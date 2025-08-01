@@ -1,0 +1,23 @@
+{
+  "name": "algo-trading-backend",
+  "version": "1.0.0",
+  "description": "Backend for the Algo Trading application, handling authentication and database operations.",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "wrangler dev --local --port 8787",
+    "start": "wrangler dev --local --port 8787",
+    "deploy": "wrangler deploy",
+    "init-db": "node init-db.js"
+  },
+  "dependencies": {
+    "@cloudflare/workers-types": "^4.20250801.0",
+    "bcryptjs": "^2.4.3",
+    "hono": "^3.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.5.0",
+    "wrangler": "^4.27.0"
+  },
+  "author": "Your Name",
+  "license": "MIT"
+}

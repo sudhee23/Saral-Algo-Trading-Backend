@@ -1,0 +1,29 @@
+### Initialize Database (run this first)
+POST http://127.0.0.1:8787/init-db
+
+### Test Health Check
+GET http://127.0.0.1:8787/
+
+### Test Quote Ticker
+GET http://127.0.0.1:8787/quote/ticker/AAPL
+
+### Test Quote History
+GET http://127.0.0.1:8787/quote/history/AAPL?start=2024-01-01&end=2024-01-31
+
+### Test Auth Signup
+POST http://127.0.0.1:8787/auth/signup
+Content-Type: application/json
+
+{
+  "email": "test@example.com",
+  "password": "password123"
+}
+
+### Test Auth Login
+POST http://127.0.0.1:8787/auth/login
+Content-Type: application/json
+
+{
+  "email": "test@example.com",
+  "password": "password123"
+} 
