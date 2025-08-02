@@ -4,6 +4,7 @@ import { logger } from 'hono/logger';
 import { auth, quote } from './routes';
 import { initializeDatabase } from './utils/init-db';
 import { getD1 } from './utils/database';
+import req from './routes/request';
 
 const app = new Hono();
 
@@ -41,6 +42,7 @@ app.post('/init-db', async (c) => {
 // API routes
 app.route('/auth', auth);
 app.route('/quote', quote);
+app.route('/request',req);
 
 // 404 handler
 app.notFound((c) => {

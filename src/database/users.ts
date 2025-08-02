@@ -27,4 +27,4 @@ export async function getUserById(db: D1Database, id: number): Promise<User | nu
     .bind(id)
     .first<User>();
   return result || null;
-} 
+}

@@ -72,7 +72,34 @@ auth.post('/signup', async (c) => {
     return c.json({ error: 'Internal server error' }, 500);
   }
 });
+// POST /auth/admin/signup
+auth.post('admin/signup', async (c) => {
+  try {
+    const { email, password }: AuthRequest = await c.req.json();
+    
+    if (!email || !password) {
+      return c.json({ error: 'Email and password are required' }, 400);
+    }
 
+    const db = getD1(c);
+    const existing = await getUserByEmail(db, email);
+    
+    if (existing) {
+      return c.json({ error: 'User already exists' }, 400);
+    }
+
+    const hash = await hashPassword(password);
+    await createUser(db, email, hash, 'ADMIN');
+    
+    const token = await signJwt({ email, role: 'USER' }, c);
+    c.header('Set-Cookie', `token=${token}; HttpOnly; Path=/; Secure; SameSite=Strict; Max-Age=3600`);
+    
+    return c.json({ success: true });
+  } catch (error) {
+    console.error('Signup error:', error);
+    return c.json({ error: 'Internal server error' }, 500);
+  }
+});
 // GET /auth/me
 auth.get('/me', async (c) => {
   try {
