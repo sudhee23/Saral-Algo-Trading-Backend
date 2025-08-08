@@ -41,3 +41,11 @@ export interface Env {
   DB: D1Database;
   JWT_SECRET: string;
 } 
+export interface Portfolio{
+  id:number,
+  user_id:number,
+  symbol:string,
+  quantity:number,
+  average_price:number
+  created_at:Date
+}
